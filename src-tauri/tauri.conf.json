@@ -1,0 +1,78 @@
+{
+  "build": {
+    "beforeDevCommand": "yarn dev",
+    "beforeBuildCommand": "yarn build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist",
+    "withGlobalTauri": false
+  },
+  "package": {
+    "productName": "tauri-population",
+    "version": "0.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "dialog": {
+        "all": false,
+        "ask": false,
+        "confirm": false,
+        "message": false,
+        "open": false,
+        "save": false
+      },
+      "globalShortcut": {
+        "all": true
+      },
+      "all": false,
+      "app": {},
+      "shell": {
+        "all": false,
+        "open": true
+      },
+      "window": {
+        "all": true,
+        "minimize": false
+      },
+      "fs": {
+        "all": false,
+        "copyFile": false,
+        "createDir": false,
+        "exists": false,
+        "readDir": false,
+        "readFile": false,
+        "removeDir": false,
+        "removeFile": false,
+        "renameFile": false,
+        "scope": [
+          "$APPDATA/assets/*",
+          "$APPDATA/database/*"
+        ],
+        "writeFile": false
+      }
+    },
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "identifier": "com.andy.xia",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ]
+    },
+    "security": {
+      "csp": null
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "tauri-population",
+        "width": 800,
+        "height": 600
+      }
+    ]
+  }
+}
