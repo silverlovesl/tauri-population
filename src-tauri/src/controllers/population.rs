@@ -1,35 +1,31 @@
 use crate::models::population::Population;
 use calamine::{open_workbook, DataType, Reader, Xlsx};
-use std::fs::File;
-use tauri::api::dialog::FileDialogBuilder;
+use tauri::api::dialog::blocking::FileDialogBuilder;
 
 #[tauri::command]
 pub fn read_japan_population() -> String {
-    // FileDialogBuilder::new().pick_files(move |file_paths| {
-    //     match file_paths {
-    //         Some(v) => {
-    //             let mut pathstr = "".to_string();
-    //             // 選択されたファイルのうち最初のファイルだけを対象とする
-    //             match v.first() {
-    //                 Some(path) => match path.to_str() {
-    //                     Some(s) => {
-    //                         println!("{:?}", s);
-    //                         pathstr = s.to_string();
-    //                         read_excel_data(pathstr);
-    //                     }
-    //                     _ => {}
-    //                 },
-    //                 _ => {}
-    //             }
-    //             // 親ウィンドウに対してファイルパスをイベントで通知
-    //         }
-    //         _ => {}
-    //     }
-    // });
-    let result_json = read_excel_data(String::from(
-        "/Users/silver/Downloads/tauri-population/src-tauri/assets/japan_population_data.xlsx",
-    ));
-    print!("come here");
+    let file_paths = FileDialogBuilder::new().pick_files();
+    let mut pathstr = "".to_string();
+    match file_paths {
+        Some(v) => match v.first() {
+            Some(path) => match path.to_str() {
+                Some(s) => {
+                    println!("{:?}", s);
+                    pathstr = s.to_string();
+                }
+                _ => {
+                    println!("Error here 1");
+                }
+            },
+            _ => {
+                println!("Error here 2");
+            }
+        },
+        _ => {
+            println!("Error here 3");
+        }
+    }
+    let result_json = read_excel_data(pathstr);
     result_json
 }
 
