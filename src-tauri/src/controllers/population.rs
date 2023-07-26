@@ -1,35 +1,8 @@
 use crate::models::population::Population;
-use calamine::{open_workbook, DataType, Reader, Xlsx};
-use tauri::api::dialog::blocking::FileDialogBuilder;
+use calamine::{open_workbook, Reader, Xlsx};
 
 #[tauri::command]
-pub fn read_japan_population() -> String {
-    let file_paths = FileDialogBuilder::new().pick_files();
-    let mut pathstr = "".to_string();
-    match file_paths {
-        Some(v) => match v.first() {
-            Some(path) => match path.to_str() {
-                Some(s) => {
-                    println!("{:?}", s);
-                    pathstr = s.to_string();
-                }
-                _ => {
-                    println!("Error here 1");
-                }
-            },
-            _ => {
-                println!("Error here 2");
-            }
-        },
-        _ => {
-            println!("Error here 3");
-        }
-    }
-    let result_json = read_excel_data(pathstr);
-    result_json
-}
-
-fn read_excel_data(path: String) -> String {
+pub fn read_excel_data(path: String) -> String {
     const SHEET_NAME: &str = "Data";
     let mut workbook: Xlsx<_> = open_workbook(path).expect("Cannot open file");
     let mut populations: Vec<Population> = vec![];
@@ -66,5 +39,6 @@ fn read_excel_data(path: String) -> String {
     }
     // print!("{:?}", populations);
     let serialized_population = serde_json::to_string(&populations).unwrap();
+    println!("{:?}", serialized_population);
     serialized_population
 }

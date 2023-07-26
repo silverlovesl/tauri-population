@@ -1,14 +1,18 @@
-import { MyLayout } from "@/components";
-import { invoke } from "@tauri-apps/api/tauri";
-import { Button } from "antd";
-import "./App.scss";
-
-
+import { MyLayout } from '@/components';
+import { invoke } from '@tauri-apps/api';
+import { open } from '@tauri-apps/api/dialog';
+import { Button } from 'antd';
+import './App.scss';
 
 function App() {
   const readExcel = async () => {
-    const jsonStr = await invoke("read_japan_population");
-    const popluation = JSON.parse((jsonStr || "{}") as string);
+    const selectedPath = await open({
+      multiple: false,
+      filters: [{ name: 'Excel', extensions: ['png', 'jpeg', 'xlsx'] }],
+    });
+    console.log(selectedPath);
+    const jsonStr = await invoke('read_excel_data', { path: selectedPath });
+    const popluation = JSON.parse((jsonStr || '{}') as string);
     console.log(popluation);
   };
 

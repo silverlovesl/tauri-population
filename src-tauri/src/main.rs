@@ -14,7 +14,7 @@ fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             greet,
-            controllers::population::read_japan_population
+            controllers::population::read_excel_data
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

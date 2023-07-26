@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties } from 'react';
 
 export type ComponentCommonProps = {
   /** スタイル */
@@ -7,4 +7,4 @@ export type ComponentCommonProps = {
   className?: string;
   /** 子要素 */
   children?: React.ReactNode;
-}
+};

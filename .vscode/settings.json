@@ -2,9 +2,9 @@
   "rust-analyzer.linkedProjects": ["./src-tauri/Cargo.toml"],
   "editor.defaultFormatter": "rust-lang.rust-analyzer",
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
+    "source.organizeImports": true
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
