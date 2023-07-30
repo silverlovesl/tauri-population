@@ -1,30 +1,20 @@
-import { MyLayout } from '@/components';
+import { Route, Routes } from 'react-router';
 import './App.scss';
+import { MyLayout } from './components';
+import { ChinaPage, JapanPage, USPage } from './pages';
 import { Compose, OrganizaionProvider } from './providers';
 
 function App() {
-  // const readExcel = async () => {
-  //   const selectedPath = await open({
-  //     multiple: false,
-  //     filters: [{ name: 'Excel', extensions: ['png', 'jpeg', 'xlsx'] }],
-  //   });
-  //   console.log(selectedPath);
-  //   const jsonStr = await invoke('read_excel_data', { path: selectedPath });
-  //   const popluation = JSON.parse((jsonStr || '{}') as string);
-  //   console.log(popluation);
-  // };
-
-  // const fetchContries = async () => {
-  //   const jsonStr = await invoke('fetch_countries');
-  //   console.log(jsonStr);
-  //   const countries = JSON.parse((jsonStr || '[]') as string);
-  //   console.log(countries);
-  // };
-
   return (
     <div>
       <Compose components={[OrganizaionProvider]}>
-        <MyLayout></MyLayout>
+        <Routes>
+          <Route path="/" element={<MyLayout />}>
+            <Route index path="cn" element={<ChinaPage />} />
+            <Route path="jp" element={<JapanPage />} />
+            <Route path="us" element={<USPage />} />
+          </Route>
+        </Routes>
       </Compose>
     </div>
   );

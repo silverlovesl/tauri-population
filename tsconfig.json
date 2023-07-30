@@ -9,7 +9,6 @@
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": false,
     "strict": true,
-    "strict": true,
     "strictNullChecks": false, // react query で undefined を返すようにしないので、利便性のため false にする
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",

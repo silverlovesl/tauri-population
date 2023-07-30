@@ -8,7 +8,7 @@ export const orgFlagMap: Record<string, string> = {
 };
 
 export class Organization implements Serializable<Organization> {
-  id: string;
+  id: number;
   name: string;
   enName: string;
   languageCode: string;

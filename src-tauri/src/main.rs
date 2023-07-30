@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod controllers;
+mod helpers;
 mod models;
 
 fn main() {
@@ -9,6 +10,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             controllers::population_controller::read_excel_data,
             controllers::country_controller::fetch_countries,
+            controllers::country_controller::fetch_provinces,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
